@@ -40,9 +40,14 @@
                         </ng-container>
                     </mat-select>
                 </mat-form-field>
-                <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Type" formControlName="type" >
-                </mat-form-field>             
+                <mat-form-field>
+                    <mat-select formControlName="type" placeholder="Sale Type">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let type of types">                            
+                            <mat-option value="{{type.value}}">{{type.value}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>  
                 <mat-form-field class="example-full-width">
                     <input matInput placeholder="Phone Number*" formControlName="phone" >
                 </mat-form-field>    

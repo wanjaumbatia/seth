@@ -74,7 +74,7 @@ export class TeamleaderService {
   }
 
   populateForm(teamleader){
-    this.form.setValue(_.omit(teamleader, 'regionName'))
+    this.form.setValue(_.omit(teamleader, 'regionName','leaderName'))
   }
 
   getTeamlader($key){    

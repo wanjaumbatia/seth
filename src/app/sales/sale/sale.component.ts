@@ -20,9 +20,17 @@ export class SaleComponent implements OnInit {
     public dialogRef: MatDialogRef<SaleComponent>
     ) { }
 
+
+    types = [
+      {id: 1, value: 'Single Application'},
+      {id: 2, value: 'Loyalty Customer'},
+      {id: 3, value: 'Chama'}
+    ]
+
   ngOnInit(): void {
   }
 
+  
   onSubmit(){
     if(this.service.form.valid){
       console.log()

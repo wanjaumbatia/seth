@@ -12,6 +12,7 @@ export class SalesService {
   constructor(private firebase: AngularFireDatabase, private date: DateService) { }
 
   salesList: AngularFireList<any>;
+
   
   form: FormGroup = new FormGroup({
     $key: new FormControl(null),

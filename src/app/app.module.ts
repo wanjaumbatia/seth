@@ -18,6 +18,7 @@ import { RegionListComponent } from './regions/region-list/region-list.component
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 import { SaleComponent } from './sales/sale/sale.component';
 import { SaleListComponent } from './sales/sale-list/sale-list.component';
+import { ProductComponent } from './sales/product/product.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { SaleListComponent } from './sales/sale-list/sale-list.component';
     RegionListComponent,
     MatConfirmDialogComponent,
     SaleComponent,
-    SaleListComponent
+    SaleListComponent,
+    ProductComponent
   ],
   imports: [
     BrowserModule,
