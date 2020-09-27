@@ -67,4 +67,5 @@ export class ProductsService {
 deleteProductSale($key: string){
   this.productList.remove($key);
 }
+
 }
