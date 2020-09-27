@@ -1,0 +1,81 @@
+<mat-toolbar>
+    <span>{{service.form.controls['$key'].value?"Edit Sale":"New Sale"}}</span>
+    <span class="fill-remaining-space"></span>
+    <span class="example-spacer"></span>
+    <button class="btn-dialog-close" mat-icon-button (click)="onClose()" tabindex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="400px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Full Name*" formControlName="fullname" >
+                    <mat-error>This field is mandatory.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="ID Number*" formControlName="idnumber" >
+                    <mat-error>This field is mandatory.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Designation" formControlName="designation" >
+                    
+                </mat-form-field>     
+                <mat-form-field>
+                    <mat-select formControlName="region" placeholder="Region">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let region of regions.array">                            
+                            <mat-option value="{{region.$key}}">{{region.code}} - {{region.region}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field>
+                    <mat-select formControlName="teamleader" placeholder="Teamleader">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let teamleader of teamleader.array">                            
+                            <mat-option value="{{teamleader.$key}}">{{teamleader.fullname}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Type" formControlName="type" >
+                </mat-form-field>             
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Phone Number*" formControlName="phone" >
+                </mat-form-field>    
+            </div>
+        </mat-grid-tile>      
+
+        <mat-grid-tile>
+            <div class="controles-container">
+               
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Agent*" formControlName="agent" >
+                </mat-form-field>             
+                
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Amount*" formControlName="amount" >
+                </mat-form-field>             
+                
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Revenue*" formControlName="revenue" >
+                </mat-form-field>          
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="remarks*" formControlName="remarks" >
+                </mat-form-field>    
+                <mat-form-field>
+                    <input matInput [matDatepicker]="picker" formControlName="date" placeholder="Date of Sale">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>    
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Save</button>                    
+                    <button mat-raised-button color="warn" (click)="onClear()" type="submit">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>

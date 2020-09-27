@@ -1,0 +1,55 @@
+<mat-toolbar>
+    <span>{{service.form.controls['$key'].value?"Edit Teamleader":"New Teamleader"}}</span>
+    <span class="fill-remaining-space"></span>
+    <span class="example-spacer"></span>
+    <button class="btn-dialog-close" mat-icon-button (click)="onClose()" tabindex="-1">
+        <mat-icon>clear</mat-icon>
+    </button>
+</mat-toolbar>
+
+<form [formGroup]="service.form" class="normal-form" (submit)="onSubmit()">
+    <mat-grid-list cols="2" rowHeight="250px">
+        <mat-grid-tile>
+            <div class="controles-container">
+                <input type="hidden" formControlName="$key">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Full Name*" formControlName="fullname" >
+                    <mat-error>This field is mandatory.</mat-error>
+                </mat-form-field>
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Email Address*" formControlName="email" >
+                    <mat-error>Invalid email address.</mat-error>
+                </mat-form-field>     
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Phone Number*" formControlName="phone" >
+                    <mat-error *ngIf="service.form.controls['phone'].errors?.required">This field is mandatory.</mat-error>
+                    <mat-error *ngIf="service.form.controls['phone'].errors?.minlength">Invalid phone number.</mat-error>
+                </mat-form-field>                         
+                
+            </div>
+        </mat-grid-tile>      
+
+        <mat-grid-tile>
+            <div class="controles-container">
+                <div class="add-bottom-padding">
+                    <mat-radio-group formControlName='gender' aria-label="Select an option">
+                        <mat-radio-button value="Male">Male</mat-radio-button>
+                        <mat-radio-button value="Female">Female</mat-radio-button>
+                    </mat-radio-group>
+                </div>                
+                <mat-form-field>
+                    <mat-select formControlName="region" placeholder="Region">
+                        <mat-option>None</mat-option>
+                        <ng-container *ngFor="let region of regions.array">                            
+                            <mat-option value="{{region.$key}}">{{region.code}} - {{region.region}}</mat-option>
+                        </ng-container>
+                    </mat-select>
+                </mat-form-field>
+                <div class="button-row">
+                    <button mat-raised-button color="primary" type="submit" [disabled]="service.form.invalid">Save</button>                    
+                    <button mat-raised-button color="warn" (click)="onClear()" type="submit">Clear</button>
+                </div>
+            </div>
+        </mat-grid-tile>
+    </mat-grid-list>
+</form>
